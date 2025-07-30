@@ -19,7 +19,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @Composable
 fun LoginScreen(
     viewModel: AuthViewModel = viewModel(),
-    onNavigateToSignup: () -> Unit
+    onNavigateToSignup: () -> Unit,
+    onLoginSuccess: () -> Unit
+
 ) {
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
@@ -107,7 +109,7 @@ fun LoginScreen(
         Button(
             onClick = {
                 if (viewModel.validateLoginForm()) {
-                    // TODO: Handle login logic
+                    onLoginSuccess()
                 }
             },
             modifier = Modifier
